@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,38 +52,45 @@ public class MainActivity extends AppCompatActivity {
         date = (CalendarView) findViewById(R.id.date);
         time = (TimePicker) findViewById(R.id.time);
         result = (TextView) findViewById(R.id.result);
-
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 group.setVisibility(VISIBLE);
                 chronometer.start();
             }
         });
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int i) {
-                switch (i) {
-                    case R.id.date:
-                        date.setVisibility(VISIBLE);
-                        date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                            @Override
-                            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                                result_a = (year + "년" + month + "월" + dayOfMonth + "일" );
-                                a = 1;
-                            }
-                        });
-                        break;
-                    case R.id.time:
-                        time.setVisibility(VISIBLE);
-                        time.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                            @Override
-                            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                                result_b = (hourOfDay + "시" + minute + "분");
-                                b = 1;
-                            }
-                        });
-                        break;
-                }
 
+        radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    time.setVisibility(VISIBLE);
+                    date.setVisibility(GONE);
+            }
+        });
+
+        radioButton2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                date.setVisibility(VISIBLE);
+                time.setVisibility(GONE);
+
+            }
+        });
+
+        date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                result_a = (year + "년" + month + "월" + dayOfMonth + "일" );
+                a = 1;
+                if(a == 1 && b== 1){
+                    complete.setVisibility(VISIBLE);
+                }
+            }
+        });
+        time.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                result_b = (hourOfDay + "시" + minute + "분");
+                b = 1;
                 if(a == 1 && b== 1){
                     complete.setVisibility(VISIBLE);
                 }

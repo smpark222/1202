@@ -20,21 +20,21 @@
         android:visibility="visible"
         android:format="Reservation Timer %s"
         android:textAlignment="center"
-        android:textSize="25dp"
+        android:textSize="20dp"
+
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:text="Reservation Start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:id="@+id/start" />
 
     <RadioGroup
         android:id="@+id/group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkedButton="@+id/radioButton"
+        android:layout_height="50dp"
         android:visibility="gone">
 
         <RadioButton
@@ -54,12 +54,13 @@
         android:layout_width="match_parent"
         android:layout_height="298dp"
         android:id="@+id/date"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TimePicker
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/time"
+        android:layout_weight="1"
         android:visibility="gone" />
 
     <FrameLayout
