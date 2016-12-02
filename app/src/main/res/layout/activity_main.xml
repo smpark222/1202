@@ -34,7 +34,8 @@
         android:id="@+id/group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/radioButton">
+        android:checkedButton="@+id/radioButton"
+        android:visibility="gone">
 
         <RadioButton
             android:text="Date Setting (Calender View)"
@@ -52,7 +53,8 @@
     <CalendarView
         android:layout_width="match_parent"
         android:layout_height="298dp"
-        android:id="@+id/date" />
+        android:id="@+id/date"
+        android:visibility="gone"/>
 
     <TimePicker
         android:layout_width="match_parent"
@@ -63,7 +65,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#dddddd">
+        android:background="#dddddd"
+        android:visibility="gone">
 
         <LinearLayout
             android:orientation="horizontal"
